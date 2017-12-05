@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoursierWallonBackOffice.Model
 {
-    class Address
+    public class Address
     {
         public long AddressId { get; set; }
         public string Street { get; set; }
@@ -15,5 +15,13 @@ namespace CoursierWallonBackOffice.Model
         public long LocalityIdAddress { get; set; }
 
         public Locality LocalityIdAddressNavigation { get; set; }
+
+        public override string ToString()
+        {
+            string text = Street + " " + HouseNumber + " " + ((BoxNumber != null) ? "(" + BoxNumber + ")\n" : "\n")
+                + LocalityIdAddressNavigation.PostalCode + " " + LocalityIdAddressNavigation.Name;
+
+            return text;
+        }
     }
 }

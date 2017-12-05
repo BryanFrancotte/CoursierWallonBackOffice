@@ -1,8 +1,11 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CoursierWallonBackOffice.Model;
+using CoursierWallonBackOffice.Service;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +16,25 @@ namespace CoursierWallonBackOffice.ViewModel
     public class OrderManagementViewModel : ViewModelBase
     {
         private INavigationService _navigationService;
+
+        private ObservableCollection<OrderWithNbItems> _orders = null;
+        public ObservableCollection<OrderWithNbItems> Orders
+        {
+            get
+            {
+                return _orders;
+            }
+
+            set
+            {
+                if(_orders == value)
+                {
+                    return;
+                }
+                _orders = value;
+                RaisePropertyChanged("Orders");
+            }
+        }
 
         private ICommand _orderDetailsCommand;
         public ICommand OrderDetailsCommand
@@ -43,6 +65,7 @@ namespace CoursierWallonBackOffice.ViewModel
         public OrderManagementViewModel(INavigationService navigationService)
         {
             this._navigationService = navigationService;
+            InitializeAsync();
         }
 
         public void OrderDetails()
@@ -53,6 +76,13 @@ namespace CoursierWallonBackOffice.ViewModel
         public void Home()
         {
             this._navigationService.NavigateTo("HomePage");
+        }
+
+        public async Task InitializeAsync()
+        {
+            var service = new OrderService();
+            var orderslist = await service.GetAllOrder(Token.tokenCurrent);
+            Orders = new ObservableCollection<OrderWithNbItems>(orderslist);
         }
     }
 }

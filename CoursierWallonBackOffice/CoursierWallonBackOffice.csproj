@@ -104,8 +104,12 @@
     <Compile Include="Model\Locality.cs" />
     <Compile Include="Model\LoginUser.cs" />
     <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\OrderWithNbItems.cs" />
     <Compile Include="Model\Parcel.cs" />
+    <Compile Include="Model\Token.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\OrderService.cs" />
+    <Compile Include="Service\UserService.cs" />
     <Compile Include="ViewModel\CoursierManagementViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
@@ -251,7 +255,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Constant\" />
-    <Folder Include="Service\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

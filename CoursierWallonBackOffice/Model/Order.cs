@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoursierWallonBackOffice.Model
 {
-    class Order
+    public class Order
     {
         public Order()
         {
@@ -40,10 +40,5 @@ namespace CoursierWallonBackOffice.Model
         public ApplicationUser UserIdOrderNavigation { get; set; }
         public ICollection<Letter> Letter { get; set; }
         public ICollection<Parcel> Parcel { get; set; }
-
-        public int GetNbItems()
-        {
-            return Letter.Count() + Parcel.Count();
-        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoursierWallonBackOffice.Model
 {
-    class Parcel
+    public class Parcel
     {
         public long LetterId { get; set; }
         public bool IsImportant { get; set; }

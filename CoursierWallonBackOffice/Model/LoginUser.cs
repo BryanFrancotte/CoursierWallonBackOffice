@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace CoursierWallonBackOffice.Model
 {
-    class LoginUser
+    public class LoginUser
     {
+        public string Email { get; set; }
+        public string Password { get; set; }
+
+        public LoginUser(string email, string password)
+        {
+            Email = email;
+            if (string.IsNullOrEmpty(password))
+            {
+                password = "";
+            }
+            Password = password;
+        }
     }
 }

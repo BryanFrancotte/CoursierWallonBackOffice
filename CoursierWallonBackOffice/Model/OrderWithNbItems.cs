@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace CoursierWallonBackOffice.Model
 {
-    public class Locality
+    public class OrderWithNbItems
     {
-        public long LocalityId { get; set; }
-        public string Name { get; set; }
-        public int PostalCode { get; set; }
+        public Order Order { get; set; }
+        public int NbItems { get; set; }
     }
 }

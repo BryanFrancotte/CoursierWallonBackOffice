@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoursierWallonBackOffice.Model
 {
-    class ApplicationUser
+    public class ApplicationUser
     {
         public string Id { get; set; }
         public long? AddressIdUser { get; set; }

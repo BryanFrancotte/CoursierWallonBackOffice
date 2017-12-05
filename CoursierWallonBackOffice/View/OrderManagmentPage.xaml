@@ -27,29 +27,47 @@
             <Button Content="Details" Command="{Binding OrderDetailsCommand}" Grid.Row="0" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="22"/>
             <Button Content="Home" Command="{Binding HomeCommand}" Grid.Row="1" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="22"/>
         </Grid>
-        <ListView Grid.Row="1" ItemsSource="{Binding Order}" SelectionChanged="ListView_SelectionChanged">
+        <ListView Grid.Row="1" ItemsSource="{Binding Orders}" Margin="50">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBlock FontSize="18" Grid.Row="0" Grid.Column="0" TextWrapping="Wrap">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBlock FontSize="18" Grid.Row="0" TextWrapping="Wrap">
                             <Run Text="Commande N° :"></Run>
-                            <Run Text="{Binding OrderNumber}"></Run>
+                            <Run Text="{Binding Order.OrderNumber}"></Run>
                         </TextBlock>
-                        <TextBlock FontSize="18" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap">
+                        <TextBlock FontSize="18" Grid.Row="2" TextWrapping="Wrap">
                             <Run Text="Nombre d'éléments :"></Run>
-                            <Run Text="{Binding GetNbItems}"></Run>
+                            <Run Text="{Binding NbItems}"></Run>
                         </TextBlock>
-                        <TextBlock FontSize="18" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap">
+                        <TextBlock FontSize="18" Grid.Row="3" TextWrapping="Wrap">
                             <Run Text="Nombre de colis :"></Run>
-                            <Run Text="{Binding Parcel.Count}"></Run>
+                            <Run Text="{Binding Order.Parcel.Count}"></Run>
                         </TextBlock>
-                        <TextBlock FontSize="18" Grid.Row="3" Grid.Column="0" TextWrapping="Wrap">
+                        <TextBlock FontSize="18" Grid.Row="4" TextWrapping="Wrap">
                             <Run Text="Nombre de lettre :"></Run>
-                            <Run Text="{Binding letter.Count}"></Run>
+                            <Run Text="{Binding Order.Letter.Count}"></Run>
+                        </TextBlock>
+                        <TextBlock Text="Adresse de retrait :"  FontSize="18" Grid.Row="2" Grid.Column="2" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding Order.PickUpAddressNavigation}"  FontSize="18" Grid.Row="3" Grid.Column="2" TextWrapping="Wrap"/>
+                        <TextBlock Text="Adresse de dépôt :"  FontSize="18" Grid.Row="4" Grid.Column="2" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding Order.DepositAddressNavigation}"  FontSize="18" Grid.Row="5" Grid.Column="2" TextWrapping="Wrap"/>
+                        <TextBlock FontSize="18" Grid.Row="0" Grid.Column="3" TextWrapping="Wrap">
+                            <Run Text="Nom client :"></Run>
+                            <Run Text="{Binding Order.UserIdOrderNavigation.NormalizedUserName}"></Run>
                         </TextBlock>
                     </Grid>
                 </DataTemplate>
