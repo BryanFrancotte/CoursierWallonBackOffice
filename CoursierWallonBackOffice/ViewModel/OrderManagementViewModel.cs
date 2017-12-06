@@ -62,6 +62,19 @@ namespace CoursierWallonBackOffice.ViewModel
             }
         }
 
+        private ICommand _refreshCommand;
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                if(this._homeCommand == null)
+                {
+                    this._homeCommand = new RelayCommand(() => InitializeAsync());
+                }
+                return this._homeCommand;
+            }
+        }
+
         public OrderManagementViewModel(INavigationService navigationService)
         {
             this._navigationService = navigationService;

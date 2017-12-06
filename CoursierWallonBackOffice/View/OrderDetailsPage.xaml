@@ -9,6 +9,99 @@
     DataContext="{Binding Source={StaticResource Locator}, Path=OrderDetails}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="17*"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Order Details" VerticalAlignment="Center" FontSize="35"/>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Button Content="Refuser" Command="{Binding }" Grid.Row="0" HorizontalAlignment="Center" Margin="79,44,78,44" VerticalAlignment="Center" FontSize="22" Height="Auto"/>
+            <Button Content="Accepter" Command="{Binding }" Grid.Row="1" HorizontalAlignment="Center" Margin="58,48,62,0" VerticalAlignment="Top" FontSize="22" Width="Auto"/>
+            <Button Content="Retour" Command="{Binding }" Grid.Row="2" HorizontalAlignment="Center" Margin="73,45,72,45" VerticalAlignment="Center" FontSize="22" Height="Auto"/>
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" TextWrapping="Wrap">
+                <Run Text="N°Commande :"></Run>
+                <Run Text="{Binding}"></Run>
+            </TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="1" TextWrapping="Wrap">
+                <Run Text="Nom Client :"></Run>
+                <Run Text="{Binding}"></Run>
+            </TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="2" TextWrapping="Wrap">
+                <Run Text="NB Items :"></Run>
+                <Run Text="{Binding}"></Run>
+            </TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="3" TextWrapping="Wrap">
+                <Run Text="NB colis :"></Run>
+                <Run Text="{Binding}"></Run>
+            </TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="4" TextWrapping="Wrap">
+                <Run Text="NB lettre :"></Run>
+                <Run Text="{Binding}"></Run>
+            </TextBlock>
+            <TextBlock Text="Adresse retrait :"  Grid.Column="2" Grid.Row="1" TextWrapping="Wrap"/>
+            <TextBlock Text="{Binding}"  Grid.Column="2" Grid.Row="2" TextWrapping="Wrap"/>
+            <TextBlock Text="Adresse dépôt :"  Grid.Column="2" Grid.Row="3" TextWrapping="Wrap"/>
+            <TextBlock Text="{Binding}"  Grid.Column="2" Grid.Row="4" TextWrapping="Wrap"/>
+            <TextBlock Grid.Column="2" Grid.Row="5" TextWrapping="Wrap">
+                <Run Text="Date retrait :"></Run>
+                <Run Text="{Binding}"></Run>
+            </TextBlock>
+            <TextBlock Grid.Column="2" Grid.Row="6" TextWrapping="Wrap">
+                <Run Text="Date dépôt :"></Run>
+                <Run Text="{Binding}"></Run>
+            </TextBlock>
+            <TextBlock Grid.Column="4" Grid.Row="1" TextWrapping="Wrap">
+                <Run Text="Heure début de retrait :"></Run>
+                <Run Text="{Binding}"></Run>
+            </TextBlock>
+            <TextBlock Grid.Column="4" Grid.Row="2" TextWrapping="Wrap">
+                <Run Text="Heure fin de retrait :"></Run>
+                <Run Text="{Binding}"></Run>
+            </TextBlock>
+            <TextBlock Grid.Column="4" Grid.Row="3" TextWrapping="Wrap">
+                <Run Text="Heure de retrait :"></Run>
+                <Run Text="{Binding}"></Run>
+            </TextBlock>
+            <TextBlock Grid.Column="4" Grid.Row="4" TextWrapping="Wrap">
+                <Run Text="Heure début de dépôt :"></Run>
+                <Run Text="{Binding}"></Run>
+            </TextBlock>
+            <TextBlock Grid.Column="4" Grid.Row="5" TextWrapping="Wrap">
+                <Run Text="Heure fin de dépôt :"></Run>
+                <Run Text="{Binding}"></Run>
+            </TextBlock>
+            <TextBlock Grid.Column="4" Grid.Row="6" TextWrapping="Wrap">
+                <Run Text="Heure de dépôt :"></Run>
+                <Run Text="{Binding}"></Run>
+            </TextBlock>
+        </Grid>
     </Grid>
 </Page>

@@ -10,16 +10,16 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="136*"/>
-            <RowDefinition Height="198*"/>
-            <RowDefinition Height="111*"/>
-            <RowDefinition Height="111*"/>
-            <RowDefinition Height="111*"/>
-            <RowDefinition Height="334*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Coursier Wallon BackOffice" VerticalAlignment="Center" FontSize="40"/>
-        <TextBox x:Name="emailInput" PlaceholderText="Email" Width="224" Text="{Binding EmailUserEntry, Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Margin="638,40,638,39" Height="32"/>
-        <PasswordBox x:Name="passwordInput" PlaceholderText="Password" Width="224" Password="{Binding PasswordUserEntry, Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Margin="638,40,638,39" Height="32"/>
-        <Button x:Name="Login" Content="Login" Command="{Binding LoginCommand}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="#FF011559" Background="#FFE4E4E4" FontSize="20" Grid.Row="4" BorderThickness="0" Margin="630,34,630,31.5" />
+        <TextBox x:Name="emailInput" PlaceholderText="Email" Width="224" Text="{Binding EmailUserEntry, Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Margin="638,40,638,39" Height="Auto"/>
+        <PasswordBox x:Name="passwordInput" PlaceholderText="Password" Width="224" Password="{Binding PasswordUserEntry, Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Margin="638,40,638,39" Height="Auto"/>
+        <Button x:Name="Login" Content="Login" Command="{Binding LoginCommand}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="#FF011559" Background="#FFE4E4E4" FontSize="20" Grid.Row="4" BorderThickness="0" Margin="630,34,630,31.5" Height="Auto"/>
     </Grid>
 </Page>
