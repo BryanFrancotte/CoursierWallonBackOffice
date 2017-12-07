@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoursierWallonBackOffice.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,11 @@ namespace CoursierWallonBackOffice.View
         public OrderManagmentPage()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ((OrderManagementViewModel)DataContext).OnNavigatedTo();
         }
     }
 }

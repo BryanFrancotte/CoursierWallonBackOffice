@@ -36,6 +36,20 @@ namespace CoursierWallonBackOffice.ViewModel
             }
         }
 
+        private OrderWithNbItems _selectedOrder;
+        public OrderWithNbItems SelectedOrder
+        {
+            get { return _selectedOrder; }
+            set
+            {
+                _selectedOrder = value;
+                if(_selectedOrder != null)
+                {
+                    RaisePropertyChanged("SelectedOrder");
+                }
+            }
+        }
+
         private ICommand _orderDetailsCommand;
         public ICommand OrderDetailsCommand
         {
@@ -56,7 +70,7 @@ namespace CoursierWallonBackOffice.ViewModel
             {
                 if(this._homeCommand == null)
                 {
-                    this._homeCommand = new RelayCommand(() => Home());
+                    this._homeCommand = new RelayCommand(() => GoToHome());
                 }
                 return this._homeCommand;
             }
@@ -67,26 +81,28 @@ namespace CoursierWallonBackOffice.ViewModel
         {
             get
             {
-                if(this._homeCommand == null)
+                if(this._refreshCommand == null)
                 {
-                    this._homeCommand = new RelayCommand(() => InitializeAsync());
+                    this._refreshCommand = new RelayCommand(() => InitializeAsync());
                 }
-                return this._homeCommand;
+                return this._refreshCommand;
             }
         }
 
         public OrderManagementViewModel(INavigationService navigationService)
         {
             this._navigationService = navigationService;
-            InitializeAsync();
         }
 
         public void OrderDetails()
         {
-            this._navigationService.NavigateTo("OrderDetailsPage");
+            if (CanExecute())
+            {
+                this._navigationService.NavigateTo("OrderDetailsPage", SelectedOrder);
+            }
         }
 
-        public void Home()
+        public void GoToHome()
         {
             this._navigationService.NavigateTo("HomePage");
         }
@@ -96,6 +112,16 @@ namespace CoursierWallonBackOffice.ViewModel
             var service = new OrderService();
             var orderslist = await service.GetAllOrder(Token.tokenCurrent);
             Orders = new ObservableCollection<OrderWithNbItems>(orderslist);
+        }
+
+        public void OnNavigatedTo()
+        {
+            InitializeAsync();
+        }
+
+        private bool CanExecute()
+        {
+            return SelectedOrder != null;
         }
     }
 }

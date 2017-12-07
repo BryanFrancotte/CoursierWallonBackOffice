@@ -1,0 +1,49 @@
+﻿<Page
+    x:Class="CoursierWallonBackOffice.View.OrderModifyingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CoursierWallonBackOffice.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding Source={StaticResource Locator}, Path=OrderModifying}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="17*"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Order Editor" VerticalAlignment="Center" FontSize="35"/>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Button Content="Accepter" Command="{Binding ConfirmCommand}" Grid.Row="0" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="22"/>
+            <Button Content="Annuler" Command="{Binding BackCommand}" Grid.Row="1" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="22"/>
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="1" Margin="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Heure de retrait" VerticalAlignment="Center" FontSize="20"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Heure de dépôt" VerticalAlignment="Center" FontSize="20"/>
+            <TextBlock Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Coursier en charge" VerticalAlignment="Center" FontSize="20"/>
+            <TimePicker Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.292,0.616"/>
+            <TimePicker Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top"/>
+            <ComboBox ItemsSource="{Binding CoursierUsers, Mode=TwoWay}" DisplayMemberPath="NormalizedUserName" SelectedItem="{Binding SelectedCoursier, Mode=TwoWay}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" MinWidth="200"/>
+        </Grid>
+        
+    </Grid>
+</Page>

@@ -21,14 +21,17 @@ namespace CoursierWallonBackOffice.ViewModel
 
             SimpleIoc.Default.Register<OrderManagementViewModel>();
             SimpleIoc.Default.Register<OrderDetailsViewModel>();
+            SimpleIoc.Default.Register<OrderModifyingViewModel>();
 
             NavigationService navigationPages = new NavigationService();
             SimpleIoc.Default.Register<INavigationService>(() => navigationPages);
             navigationPages.Configure("LoginPage", typeof(LoginPage));
             navigationPages.Configure("HomePage", typeof(HomePage));
             navigationPages.Configure("CoursierManagementPage", typeof(CoursierManagmentPage));
+
             navigationPages.Configure("OrderManagementPage", typeof(OrderManagmentPage));
             navigationPages.Configure("OrderDetailsPage", typeof(OrderDetailsPage));
+            navigationPages.Configure("OrderModifyingPage", typeof(OrderModifyingPage));
         }
 
         public LoginViewModel Login
@@ -68,6 +71,14 @@ namespace CoursierWallonBackOffice.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<OrderDetailsViewModel>();
+            }
+        }
+
+        public OrderModifyingViewModel OrderModifying
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<OrderModifyingViewModel>();
             }
         }
     }

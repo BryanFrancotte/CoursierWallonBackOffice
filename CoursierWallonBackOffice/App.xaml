@@ -3,8 +3,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:CoursierWallonBackOffice"
+    xmlns:vm="using:CoursierWallonBackOffice.ViewModel"
+    xmlns:converter="using:CoursierWallonBackOffice.Converter"
     RequestedTheme="Light">
     <Application.Resources>
-        <vm:ViewModelLocator x:Key="Locator" xmlns:vm="using:CoursierWallonBackOffice.ViewModel"/>
+        <vm:ViewModelLocator x:Key="Locator"/>
+        <converter:NullVisibilityConverter x:Key="NullConverter"/>
     </Application.Resources>
 </Application>

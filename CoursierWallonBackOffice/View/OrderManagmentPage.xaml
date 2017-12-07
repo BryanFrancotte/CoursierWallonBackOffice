@@ -26,9 +26,9 @@
             </Grid.RowDefinitions>
             <Button Content="Details" Command="{Binding OrderDetailsCommand}" Grid.Row="0" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="22"/>
             <Button Content="Home" Command="{Binding HomeCommand}" Grid.Row="1" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="22"/>
-            <Button Content="Actualiser" Command="{Binding }" Grid.Row="3" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="22"/>
+            <Button Content="Actualiser" Command="{Binding RefreshCommand}" Grid.Row="3" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="22"/>
         </Grid>
-        <ListView Grid.Row="1" ItemsSource="{Binding Orders}" Margin="50">
+        <ListView Grid.Row="1" ItemsSource="{Binding Orders, Mode=TwoWay}" SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" Margin="50">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
