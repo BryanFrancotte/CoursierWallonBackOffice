@@ -10,7 +10,5 @@ namespace CoursierWallonBackOffice.Model
     {
         public Order Order { get; set; }
         public int NbItems { get; set; }
-
-        public string NameCoursier { get; set; }
     }
 }

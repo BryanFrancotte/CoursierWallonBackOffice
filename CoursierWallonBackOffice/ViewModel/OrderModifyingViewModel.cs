@@ -3,9 +3,11 @@ using CoursierWallonBackOffice.Service;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml.Navigation;
 
 namespace CoursierWallonBackOffice.ViewModel
@@ -29,10 +31,37 @@ namespace CoursierWallonBackOffice.ViewModel
             }
         }
 
-        public string PickUpTime { get; set; }
-        public string DepositTime { get; set; }
+        public bool _asPickUpTime;
+        public bool AsPickUpTime
+        {
+            get { return _asPickUpTime; }
+            set
+            {
+                if (_asPickUpTime == value)
+                {
+                    return;
+                }
+                _asPickUpTime = value;
+                RaisePropertyChanged("AsPickUpTime");
+            }
+        }
+        public bool _asDepositTime;
+        public bool AsDepositTime
+        {
+            get { return _asDepositTime; }
+            set
+            {
+                if (_asDepositTime == value)
+                {
+                    return;
+                }
+                _asDepositTime = value;
+                RaisePropertyChanged("AsDepositTime");
+            }
+        }
+        public TimeSpan PickUpTime { get; set; }
+        public TimeSpan DepositTime { get; set; }
         public ApplicationUser SelectedCoursier { get; set; }
-
 
         private ICommand _confirmCommand;
         public ICommand ConfirmCommand
@@ -63,6 +92,7 @@ namespace CoursierWallonBackOffice.ViewModel
         public OrderModifyingViewModel(INavigationService navigation)
         {
             _navigation = navigation;
+            PickUpTime = DepositTime = DateTime.Now.TimeOfDay;
         }
 
         public void OnNavigatedTo(NavigationEventArgs e)
@@ -85,9 +115,46 @@ namespace CoursierWallonBackOffice.ViewModel
 
         public void ConfirmModification()
         {
+            if (CanConfirm())
+            {
+                SetSelectedOrder();
+                _navigation.NavigateTo("OrderDetailsPage", SelectedOrder);
+            }
+            else
+            {
+                var notificationXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
+                var toastElements = notificationXml.GetElementsByTagName("text");
+                toastElements[0].AppendChild(notificationXml.CreateTextNode("Aucun coursier selectionné!!"));
+                var toastNotification = new ToastNotification(notificationXml);
+                ToastNotificationManager.CreateToastNotifier().Show(toastNotification);
+            }
+        }
+
+        public void SetSelectedOrder()
+        {
             SelectedOrder.Order.CoursierIdOrder = SelectedCoursier.Id;
-            SelectedOrder.NameCoursier = SelectedCoursier.NormalizedUserName;
-            _navigation.NavigateTo("OrderDetailsPage", SelectedOrder);
+            SelectedOrder.Order.CoursierIdOrderNavigation = SelectedCoursier;
+            if (AsPickUpTime)
+            {
+                SelectedOrder.Order.PickUpTime = PickUpTime.ToString(@"hh\:mm");
+            }
+            else
+            {
+                SelectedOrder.Order.PickUpTime = null;
+            }
+            if (AsDepositTime)
+            {
+                SelectedOrder.Order.DepositTime = DepositTime.ToString(@"hh\:mm");
+            }
+            else
+            {
+                SelectedOrder.Order.DepositTime = null;
+            }
+        }
+
+        public bool CanConfirm()
+        {
+            return SelectedCoursier != null;
         }
     }
 }

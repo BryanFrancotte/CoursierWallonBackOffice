@@ -37,5 +37,22 @@ namespace CoursierWallonBackOffice.Service
                 return HttpResponseCode.HTTP_NOT_FOUND;
             }
         }
+
+        public async Task<int> EditOrder(Order order, Token token)
+        {
+            var http = new HttpClient();
+            http.DefaultRequestHeaders.Add("Authorization", "Bearer " + token.TokenString);
+            string json = JsonConvert.SerializeObject(order);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await http.PutAsync(new Uri(CoursierApi.URL_BASE + CoursierApi.URL_EditOrder), content);
+            if (response.IsSuccessStatusCode)
+            {
+                return HttpResponseCode.HTTP_OK;
+            }
+            else
+            {
+                return HttpResponseCode.HTTP_NOT_FOUND;
+            }
+        }
     }
 }

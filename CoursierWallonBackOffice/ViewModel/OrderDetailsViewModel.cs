@@ -20,6 +20,19 @@ namespace CoursierWallonBackOffice.ViewModel
         private INavigationService _navigationService;
         public OrderWithNbItems SelectedOrder { get; set; }
 
+        private ICommand _acceptCommand;
+        public ICommand AcceptCommand
+        {
+            get
+            {
+                if(_acceptCommand == null)
+                {
+                    _acceptCommand = new RelayCommand(() => Accept(), () => CanConfirm());
+                }
+                return _acceptCommand;
+            }
+        }
+
         private ICommand _modifyingCommand;
         public ICommand ModifyingCommand
         {
@@ -72,6 +85,35 @@ namespace CoursierWallonBackOffice.ViewModel
         public void GoToModification()
         {
             this._navigationService.NavigateTo("OrderModifyingPage", SelectedOrder);
+        }
+
+        public async Task Accept()
+        {
+            var service = new OrderService();
+            SelectedOrder.Order.State = OrderConstant.ACCEPTED;
+            int resultCode = await service.EditOrder(SelectedOrder.Order, Token.tokenCurrent);
+            if (resultCode == HttpResponseCode.HTTP_OK)
+            {
+                var notificationXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
+                var toastElements = notificationXml.GetElementsByTagName("text");
+                toastElements[0].AppendChild(notificationXml.CreateTextNode("La modification à bien été enregistré"));
+                var toastNotification = new ToastNotification(notificationXml);
+                ToastNotificationManager.CreateToastNotifier().Show(toastNotification);
+            }
+            else
+            {
+                var notificationXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
+                var toastElements = notificationXml.GetElementsByTagName("text");
+                toastElements[0].AppendChild(notificationXml.CreateTextNode("Une erreur "));
+                var toastNotification = new ToastNotification(notificationXml);
+                ToastNotificationManager.CreateToastNotifier().Show(toastNotification);
+            }
+            _navigationService.NavigateTo("OrderManagementPage");
+        }
+
+        private bool CanConfirm()
+        {
+            return SelectedOrder.Order.CoursierIdOrder != null  ;
         }
 
         public async Task Decline()

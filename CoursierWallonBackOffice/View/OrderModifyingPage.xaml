@@ -35,14 +35,18 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="6*"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Heure de retrait" VerticalAlignment="Center" FontSize="20"/>
             <TextBlock Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Heure de dépôt" VerticalAlignment="Center" FontSize="20"/>
             <TextBlock Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Coursier en charge" VerticalAlignment="Center" FontSize="20"/>
-            <TimePicker Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.292,0.616"/>
-            <TimePicker Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top"/>
-            <ComboBox ItemsSource="{Binding CoursierUsers, Mode=TwoWay}" DisplayMemberPath="NormalizedUserName" SelectedItem="{Binding SelectedCoursier, Mode=TwoWay}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" MinWidth="200"/>
+            <CheckBox IsChecked="{Binding AsPickUpTime, Mode=TwoWay}" Content="Utiliser une heure de retrait" Grid.Column="0" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
+            <CheckBox IsChecked="{Binding AsDepositTime, Mode=TwoWay}" Content="Utiliser une heure de dépôt" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
+            <TimePicker Time="{Binding PickUpTime, Mode=TwoWay}" IsEnabled="{Binding AsPickUpTime, Mode=TwoWay}" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top"/>
+            <TimePicker Time="{Binding DepositTime, Mode=TwoWay}" IsEnabled="{Binding AsDepositTime, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top"/>
+            <ComboBox ItemsSource="{Binding CoursierUsers, Mode=TwoWay}" DisplayMemberPath="NormalizedUserName" SelectedItem="{Binding SelectedCoursier, Mode=TwoWay}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="200"/>
+            
         </Grid>
         
     </Grid>

@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="Constant\CoursierApi.cs" />
     <Compile Include="Constant\HttpResponseCode.cs" />
+    <Compile Include="Constant\OrderConstant.cs" />
     <Compile Include="Converter\DateConverter.cs" />
     <Compile Include="Converter\DeliveryTypeConverter.cs" />
     <Compile Include="Converter\NullVisibilityConverter.cs" />
