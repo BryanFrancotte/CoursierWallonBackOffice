@@ -13,6 +13,8 @@ namespace CoursierWallonBackOffice.Constant
         public const string URL_JWT = "Jwt";
 
         public const string URL_GetAllOrderWithNumberItems = "Order/GetAllWithNbItems";
+        public const string URL_GetAllOrderNotComfirmWithNbItems = "Order/GetAllNotComfirmWithNbItems";
+        public const string URL_GetAllOrderConfirmWithNbItems = "Order/GetAllComfirmWithNbItems";
         public const string URL_EditOrder = "Order/Edit";
         public const string URL_DeleteOrderById = "Order/DeleteById/";
     }

@@ -9,5 +9,9 @@
     <Application.Resources>
         <vm:ViewModelLocator x:Key="Locator"/>
         <converter:NullVisibilityConverter x:Key="NullConverter"/>
+        <converter:DateConverter x:Key="DateConverter"/>
+        <converter:ParcelTypeConverter x:Key="ParcelTypeConverter"/>
+        <converter:DeliveryTypeConverter x:Key="DeliveryTypeConverter"/>
+        <converter:LetterTypeConverter x:Key="LetterTypeConverter"/>
     </Application.Resources>
 </Application>

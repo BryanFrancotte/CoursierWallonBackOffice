@@ -40,6 +40,19 @@ namespace CoursierWallonBackOffice.ViewModel
             }
         }
 
+        private ICommand _confirmedOrderManagementCommand;
+        public ICommand ConfirmedOrderManagementCommand
+        {
+            get
+            {
+                if(this._confirmedOrderManagementCommand == null)
+                {
+                    this._confirmedOrderManagementCommand = new RelayCommand(() => ConfirmedOrder());
+                }
+                return this._confirmedOrderManagementCommand;
+            }
+        }
+
         public HomeViewModel(INavigationService navigationService)
         {
             this._navigationService = navigationService;
@@ -52,6 +65,10 @@ namespace CoursierWallonBackOffice.ViewModel
         public void OrderManagement()
         {
             this._navigationService.NavigateTo("OrderManagementPage");
+        }
+        public void ConfirmedOrder()
+        {
+            this._navigationService.NavigateTo("ConfirmedOrder");
         }
     }
 }

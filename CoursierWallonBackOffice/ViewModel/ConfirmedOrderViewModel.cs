@@ -13,9 +13,14 @@ using System.Windows.Input;
 
 namespace CoursierWallonBackOffice.ViewModel
 {
-    public class OrderManagementViewModel : ViewModelBase
+    public class ConfirmedOrderViewModel : ViewModelBase
     {
         private INavigationService _navigationService;
+
+        public ConfirmedOrderViewModel(INavigationService navigationService)
+        {
+            this._navigationService = navigationService;
+        } 
 
         private ObservableCollection<OrderWithNbItems> _orders = null;
         public ObservableCollection<OrderWithNbItems> Orders
@@ -27,7 +32,7 @@ namespace CoursierWallonBackOffice.ViewModel
 
             set
             {
-                if(_orders == value)
+                if (_orders == value)
                 {
                     return;
                 }
@@ -43,7 +48,7 @@ namespace CoursierWallonBackOffice.ViewModel
             set
             {
                 _selectedOrder = value;
-                if(_selectedOrder != null)
+                if (_selectedOrder != null)
                 {
                     RaisePropertyChanged("SelectedOrder");
                 }
@@ -68,7 +73,7 @@ namespace CoursierWallonBackOffice.ViewModel
         {
             get
             {
-                if(this._homeCommand == null)
+                if (this._homeCommand == null)
                 {
                     this._homeCommand = new RelayCommand(() => GoToHome());
                 }
@@ -81,17 +86,12 @@ namespace CoursierWallonBackOffice.ViewModel
         {
             get
             {
-                if(this._refreshCommand == null)
+                if (this._refreshCommand == null)
                 {
                     this._refreshCommand = new RelayCommand(() => InitializeAsync());
                 }
                 return this._refreshCommand;
             }
-        }
-
-        public OrderManagementViewModel(INavigationService navigationService)
-        {
-            this._navigationService = navigationService;
         }
 
         public void OrderDetails()
@@ -110,7 +110,7 @@ namespace CoursierWallonBackOffice.ViewModel
         public async Task InitializeAsync()
         {
             var service = new OrderService();
-            var orderslist = await service.GetAllOrderNotConfirmed(Token.tokenCurrent);
+            var orderslist = await service.GetAllOrderConfirmed(Token.tokenCurrent);
             Orders = new ObservableCollection<OrderWithNbItems>(orderslist);
         }
 

@@ -23,6 +23,26 @@ namespace CoursierWallonBackOffice.Service
             return orders;
         }
 
+        public async Task<IEnumerable<OrderWithNbItems>> GetAllOrderNotConfirmed(Token token)
+        {
+            var http = new HttpClient();
+            http.DefaultRequestHeaders.Add("Authorization", "Bearer " + token.TokenString);
+            var stringInput = await http.GetStringAsync(new Uri(CoursierApi.URL_BASE + CoursierApi.URL_GetAllOrderNotComfirmWithNbItems));
+            OrderWithNbItems[] orders = JsonConvert.DeserializeObject<OrderWithNbItems[]>(stringInput);
+
+            return orders;
+        }
+
+        public async Task<IEnumerable<OrderWithNbItems>> GetAllOrderConfirmed(Token token)
+        {
+            var http = new HttpClient();
+            http.DefaultRequestHeaders.Add("Authorization", "Bearer " + token.TokenString);
+            var stringInput = await http.GetStringAsync(new Uri(CoursierApi.URL_BASE + CoursierApi.URL_GetAllOrderConfirmWithNbItems));
+            OrderWithNbItems[] orders = JsonConvert.DeserializeObject<OrderWithNbItems[]>(stringInput);
+
+            return orders;
+        }
+
         public async Task<int> DeleteOrderById(long orderNumber, Token token)
         {
             var http = new HttpClient();

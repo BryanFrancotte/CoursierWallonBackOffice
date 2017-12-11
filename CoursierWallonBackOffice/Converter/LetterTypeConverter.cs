@@ -7,26 +7,23 @@ using Windows.UI.Xaml.Data;
 
 namespace CoursierWallonBackOffice.Converter
 {
-    public class DateConverter : IValueConverter
+    class LetterTypeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            //No value provided
-            if (value == null)
+            if((int)value == 0)
             {
-                return null;
+                return "normal";
             }
-            //No format provided
-            if (parameter == null)
+            else
             {
-                return null;
+                return "important";
             }
-            return String.Format((String)parameter, value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            return value;
+            throw new NotImplementedException();
         }
     }
 }
