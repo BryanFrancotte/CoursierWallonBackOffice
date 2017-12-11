@@ -8,8 +8,9 @@ namespace CoursierWallonBackOffice.Model
 {
     public class Parcel
     {
-        public long LetterId { get; set; }
-        public bool IsImportant { get; set; }
-        public long OrderNumberLetter { get; set; }
+        public long ParcelId { get; set; }
+        public int ParcelType { get; set; }
+        public long OrderNumberParcel { get; set; }
+        public Order OrderNumberParcelNavigation { get; set; }
     }
 }

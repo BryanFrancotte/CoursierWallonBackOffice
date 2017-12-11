@@ -21,16 +21,16 @@ namespace CoursierWallonBackOffice.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class OrderDetailsPage : Page
+    public sealed partial class ConfirmedOrder : Page
     {
-        public OrderDetailsPage()
+        public ConfirmedOrder()
         {
             this.InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ((OrderDetailsViewModel)DataContext).OnNavigatedTo(e);
+            ((ConfirmedOrderViewModel)DataContext).OnNavigatedTo();
         }
     }
 }

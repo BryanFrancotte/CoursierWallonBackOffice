@@ -1,4 +1,5 @@
-﻿using CoursierWallonBackOffice.Model;
+﻿using CoursierWallonBackOffice.Constant;
+using CoursierWallonBackOffice.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -20,15 +21,26 @@ namespace CoursierWallonBackOffice.Service
 
             try
             {
-                var stringInput = await http.PostAsync(new Uri("http://apicoursier.azurewebsites.net/api/Jwt"), content);
+                var stringInput = await http.PostAsync(new Uri(CoursierApi.URL_BASE + CoursierApi.URL_JWT), content);
                 var content2 = await stringInput.Content.ReadAsStringAsync();
                 token = JsonConvert.DeserializeObject<Token>(content2);
             }
             catch (HttpRequestException e)
             {
+                Console.Write(e);
                 token = null;
             }
             return token;
+        }
+
+        public async Task<IEnumerable<ApplicationUser>> GetAllUsers(Token token)
+        {
+            var http = new HttpClient();
+            http.DefaultRequestHeaders.Add("Authorization", "Bearer " + token.TokenString);
+            var stringInput = await http.GetStringAsync(new Uri(CoursierApi.URL_BASE + "User/GetAll"));
+            ApplicationUser[] elements = JsonConvert.DeserializeObject<ApplicationUser[]>(stringInput);
+
+            return elements;
         }
 
     }

@@ -1,12 +1,12 @@
 ﻿<Page
-    x:Class="CoursierWallonBackOffice.View.OrderManagmentPage"
+    x:Class="CoursierWallonBackOffice.View.ConfirmedOrder"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:CoursierWallonBackOffice.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    DataContext="{Binding Source={StaticResource Locator}, Path=OrderManagement}">
+    DataContext="{Binding Source={StaticResource Locator}, Path=ConfirmedOrder}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
@@ -24,7 +24,7 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <Button Content="Details" Command="{Binding OrderDetailsCommand}" Grid.Row="0" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="22"/>
+            <Button Visibility="Collapsed" Content="Details" Command="{Binding OrderDetailsCommand}" Grid.Row="0" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="22"/>
             <Button Content="Home" Command="{Binding HomeCommand}" Grid.Row="1" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="22"/>
             <Button Content="Actualiser" Command="{Binding RefreshCommand}" Grid.Row="3" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" FontSize="22"/>
         </Grid>
@@ -69,6 +69,26 @@
                         <TextBlock FontSize="18" Grid.Row="0" Grid.Column="3" TextWrapping="Wrap">
                             <Run Text="Nom client :"></Run>
                             <Run Text="{Binding Order.UserIdOrderNavigation.NormalizedUserName}"></Run>
+                        </TextBlock>
+                        <TextBlock FontSize="18" Grid.Row="1" Grid.Column="3" TextWrapping="Wrap">
+                            <Run Text="Nom Coursier :"></Run>
+                            <Run Text="{Binding Order.CoursierIdOrderNavigation.NormalizedUserName}"></Run>
+                        </TextBlock>
+                        <TextBlock FontSize="18" Grid.Row="2" Grid.Column="3" TextWrapping="Wrap">
+                            <Run Text="Date de retrait :"></Run>
+                            <Run Text="{Binding Order.PickUpDate, Converter={StaticResource DateConverter}, ConverterParameter='{}{0:dd MMM yyyy}'}"></Run>
+                        </TextBlock>
+                        <TextBlock FontSize="18" Grid.Row="3" Grid.Column="3" TextWrapping="Wrap">
+                            <Run Text="Heure de retrait :"></Run>
+                            <Run Text="{Binding Order.PickUpTime}"></Run>
+                        </TextBlock>
+                        <TextBlock FontSize="18" Grid.Row="4" Grid.Column="3" TextWrapping="Wrap">
+                            <Run Text="Date de Dépôt :"></Run>
+                            <Run Text="{Binding Order.DepositDate, Converter={StaticResource DateConverter}, ConverterParameter='{}{0:dd MMM yyyy}'}"></Run>
+                        </TextBlock>
+                        <TextBlock FontSize="18" Grid.Row="5" Grid.Column="3" TextWrapping="Wrap">
+                            <Run Text="Heure de Dépôt :"></Run>
+                            <Run Text="{Binding Order.DepositTime}"></Run>
                         </TextBlock>
                     </Grid>
                 </DataTemplate>

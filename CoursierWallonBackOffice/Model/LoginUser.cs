@@ -16,7 +16,7 @@ namespace CoursierWallonBackOffice.Model
             Email = email;
             if (string.IsNullOrEmpty(password))
             {
-                password = "";
+                password = " ";
             }
             Password = password;
         }

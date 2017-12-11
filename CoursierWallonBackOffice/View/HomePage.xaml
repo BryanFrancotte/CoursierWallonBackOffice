@@ -10,15 +10,16 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="65*"/>
-            <RowDefinition Height="136*"/>
-            <RowDefinition Height="32*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="227*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Coursier Wallon BackOffice" VerticalAlignment="Center" FontSize="40"/>
         <Button Content="Coursier Manager" Command="{Binding CoursierManagementCommand}" HorizontalAlignment="Center" Margin="653,11" Grid.Row="2" VerticalAlignment="Center" FontSize="22"/>
-        <Button Content="Order manager" Command="{Binding OrderManagementCommand}" HorizontalAlignment="Center" Margin="666,19,665,19" VerticalAlignment="Center" FontSize="22" Grid.Row="3"/>
-
+        <Button Content="Gestionnaire de commande en attente" Command="{Binding OrderManagementCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Grid.Row="3"/>
+        <Button Content="Gestionnaire de commande confirmée" Command="{Binding ConfirmedOrderManagementCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Grid.Row="4"/>
     </Grid>
 </Page>
