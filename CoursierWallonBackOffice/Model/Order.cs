@@ -32,6 +32,7 @@ namespace CoursierWallonBackOffice.Model
         public long DepositAddress { get; set; }
         public long BillingAddress { get; set; }
         public byte[] VerCol { get; set; }
+        public string AndroidToken { get; set; }
 
         public Address BillingAddressNavigation { get; set; }
         public ApplicationUser CoursierIdOrderNavigation { get; set; }
