@@ -37,7 +37,7 @@ namespace CoursierWallonBackOffice.Service
         {
             var http = new HttpClient();
             http.DefaultRequestHeaders.Add("Authorization", "Bearer " + token.TokenString);
-            var stringInput = await http.GetStringAsync(new Uri(CoursierApi.URL_BASE + "User/GetAll"));
+            var stringInput = await http.GetStringAsync(new Uri(CoursierApi.URL_BASE + CoursierApi.URL_GetAllCoursier));
             ApplicationUser[] elements = JsonConvert.DeserializeObject<ApplicationUser[]>(stringInput);
 
             return elements;
