@@ -1,0 +1,25 @@
+﻿<Page
+    x:Class="CoursierWallonBackOffice.View.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CoursierWallonBackOffice.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Home}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Coursier Wallon BackOffice" VerticalAlignment="Center" FontSize="40"/>
+        <Button Content="Coursier Manager" Command="{Binding CoursierManagementCommand}" HorizontalAlignment="Center" Margin="653,11" Grid.Row="2" VerticalAlignment="Center" FontSize="22"/>
+        <Button Content="Gestionnaire de commande en attente" Command="{Binding OrderManagementCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Grid.Row="3"/>
+        <Button Content="Gestionnaire de commande confirmée" Command="{Binding ConfirmedOrderManagementCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Grid.Row="4"/>
+    </Grid>
+</Page>
