@@ -11,9 +11,6 @@ namespace CoursierWallonBackOffice.Model
     {
         public string Id { get; set; }
         public byte[] VerCol { get; set; }
-        [Timestamp]
-        public byte[] RowVersion { get; set; }
-       
         public string UserName { get; set; }
 
         public string AndroidToken { get; set; }
