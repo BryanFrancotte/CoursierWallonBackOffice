@@ -68,7 +68,7 @@
                         <TextBlock Text="{Binding Order.DepositAddressNavigation}"  FontSize="18" Grid.Row="5" Grid.Column="2" TextWrapping="Wrap"/>
                         <TextBlock FontSize="18" Grid.Row="0" Grid.Column="3" TextWrapping="Wrap">
                             <Run Text="Nom client :"></Run>
-                            <Run Text="{Binding Order.UserIdOrderNavigation.NormalizedUserName}"></Run>
+                            <Run Text="{Binding Order.UserIdOrderNavigation.UserName}"></Run>
                         </TextBlock>
                     </Grid>
                 </DataTemplate>

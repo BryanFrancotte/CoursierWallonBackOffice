@@ -54,7 +54,7 @@
             </TextBlock>
             <TextBlock Grid.Column="0" Grid.Row="1" TextWrapping="Wrap">
                 <Run Text="Nom Client :"/>
-                <Run Text="{Binding SelectedOrder.Order.UserIdOrderNavigation.NormalizedUserName}"/>
+                <Run Text="{Binding SelectedOrder.Order.UserIdOrderNavigation.UserName}"/>
             </TextBlock>
             <TextBlock Grid.Column="0" Grid.Row="2" TextWrapping="Wrap">
                 <Run Text="NB Items :"/>
@@ -118,7 +118,7 @@
             </TextBlock>
             <TextBlock Grid.Column="4" Grid.Row="0" TextWrapping="Wrap">
                 <Run Text="Coursier Assigné :"/>
-                <Run Text="{Binding SelectedOrder.Order.CoursierIdOrderNavigation.NormalizedUserName}"/>
+                <Run Text="{Binding SelectedOrder.Order.CoursierIdOrderNavigation.UserName}"/>
             </TextBlock>
             <TextBlock Grid.Column="4" Grid.Row="1" TextWrapping="Wrap">
                 <Run Text="Heure début de retrait :"/>

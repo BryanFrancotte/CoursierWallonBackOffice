@@ -45,7 +45,7 @@
             <CheckBox IsChecked="{Binding AsDepositTime, Mode=TwoWay}" Content="Utiliser une heure de dépôt" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
             <TimePicker Time="{Binding PickUpTime, Mode=TwoWay}" IsEnabled="{Binding AsPickUpTime, Mode=TwoWay}" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top"/>
             <TimePicker Time="{Binding DepositTime, Mode=TwoWay}" IsEnabled="{Binding AsDepositTime, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top"/>
-            <ComboBox ItemsSource="{Binding CoursierUsers, Mode=TwoWay}" DisplayMemberPath="NormalizedUserName" SelectedItem="{Binding SelectedCoursier, Mode=TwoWay}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="200"/>
+            <ComboBox ItemsSource="{Binding CoursierUsers, Mode=TwoWay}" DisplayMemberPath="UserName" SelectedItem="{Binding SelectedCoursier, Mode=TwoWay}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="200"/>
             
         </Grid>
         
