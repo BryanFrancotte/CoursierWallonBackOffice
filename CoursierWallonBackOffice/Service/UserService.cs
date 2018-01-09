@@ -3,7 +3,9 @@ using CoursierWallonBackOffice.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +14,10 @@ namespace CoursierWallonBackOffice.Service
 {
     public class UserService
     {
-        public async Task<Token> LoginUser(LoginUser loginUser)
+        public async Task<int> LoginUser(LoginUser loginUser)
         {
             Token token;
+            int resultCode = 0;
             var http = new HttpClient();
             string json = JsonConvert.SerializeObject(loginUser);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -22,15 +25,29 @@ namespace CoursierWallonBackOffice.Service
             try
             {
                 var stringInput = await http.PostAsync(new Uri(CoursierApi.URL_BASE + CoursierApi.URL_JWT), content);
-                var content2 = await stringInput.Content.ReadAsStringAsync();
-                token = JsonConvert.DeserializeObject<Token>(content2);
+                HttpStatusCode statusCode = stringInput.StatusCode;
+
+                if (statusCode == HttpStatusCode.OK)
+                {
+                    var stringToken = await stringInput.Content.ReadAsStringAsync();
+                    token = JsonConvert.DeserializeObject<Token>(stringToken);
+
+                    if (VerificationIsAdmin(token.TokenString))
+                    {
+                        resultCode = 200;
+                        Token.tokenCurrent = token;
+                    }
+                    else
+                    {
+                        resultCode = 401;
+                    }
+                }
             }
             catch (HttpRequestException e)
             {
-                Console.Write(e);
-                token = null;
+                resultCode = 0;
             }
-            return token;
+            return resultCode;
         }
 
         public async Task<IEnumerable<ApplicationUser>> GetAllUsers(Token token)
@@ -41,6 +58,15 @@ namespace CoursierWallonBackOffice.Service
             ApplicationUser[] elements = JsonConvert.DeserializeObject<ApplicationUser[]>(stringInput);
 
             return elements;
+        }
+
+        public bool VerificationIsAdmin(String token)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var tokenS = handler.ReadToken(token) as JwtSecurityToken;
+            var role = tokenS.Claims.SingleOrDefault(claim => claim.Type == "Role").Value;
+
+            return (role != null && role == "ADMIN");
         }
 
     }

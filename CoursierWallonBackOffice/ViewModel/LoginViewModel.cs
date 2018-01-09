@@ -42,23 +42,25 @@ namespace CoursierWallonBackOffice.ViewModel
         public async Task Login()
         {
             var service = new UserService();
-            Token token = await service.LoginUser(LoginUser);
+            int resultCode = await service.LoginUser(LoginUser);
 
-
-
-            if (token == null)
+            switch (resultCode)
             {
-                //Se renseigner sur un autre moyen de faire des notifications
-                var notificationXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
-                var toastElements = notificationXml.GetElementsByTagName("text");
-                toastElements[0].AppendChild(notificationXml.CreateTextNode("Problème de connection"));
-                var toastNotification = new ToastNotification(notificationXml);
-                ToastNotificationManager.CreateToastNotifier().Show(toastNotification);
-            }
-            else
-            {
-                Token.tokenCurrent = token;
-                GoToHomePage();
+                case 200:
+                    GoToHomePage();
+                    break;
+                case 401:
+                    var messageNotAdmin = new Windows.UI.Popups.MessageDialog("Accès interdit");
+                    await messageNotAdmin.ShowAsync();
+                    break;
+                case 404:
+                    var messageNotFound = new Windows.UI.Popups.MessageDialog("Serveur non trouvé");
+                    await messageNotFound.ShowAsync();
+                    break;
+                case 0:
+                    var messageProbleme = new Windows.UI.Popups.MessageDialog("Problème de connection");
+                    await messageProbleme.ShowAsync();
+                    break;
             }
         }
         
